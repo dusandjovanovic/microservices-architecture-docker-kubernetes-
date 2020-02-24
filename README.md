@@ -5,3 +5,18 @@
 2. Korišćenjem **Docker-a** kreirati kontejnere za svaku komponentu implementirane demo Web aplikacije. Potrebno je kreirati poseban kontejner za svaki REST API servis i za svaku instancu baze podataka. Ukoliko se koristi message broker u aplikaciji, potrebno je i za njega obezbediti zaseban kontejner.
 
 3. Korišćenjem **Kubernetes-a** demonstirati mogućnosti upravljanja i orkestracije kontejnerskom aplikacijom koja je kreirana u prethodnim tačkama.
+
+## Mikroservisi
+
+Izraz mikroservisi se odnosi na tehnike i prakse softverskog inženjerstva koje se koriste za razvijanje skalabilnih softverskih rešenja. Pre svega se odnosi na primenu principa i arhitekturnih obrazaca. Svaki mikroservis živi pojedinačno, ali sa druge strane, mikroservisi zavise jedni od drugih. Više servisa koji čine sistem se *deploy-uju* odvojenim tempom.
+
+![alt text][microservices_architecture]
+
+[microservices_architecture]: meta/microservices_architecture.png
+
+Neke od komponenti ovakve arhitekture:
+
+* **Management** - upravljanje čvorovima servisa.
+* **Identity provider** - upravljanje informacijama identifikacije u distribuiranom sistemu.
+* **Service discovery** - servisi, adrese i ulazne tačke servisa.
+* **API Gateway** - koristi se kao jedina ulazna tačka za klijentsku stranu. Ova tačka vraća odgovore sa jednog ili više (agregirano) mikroservisa.
