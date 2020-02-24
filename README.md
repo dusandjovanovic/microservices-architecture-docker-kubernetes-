@@ -8,6 +8,6 @@
 
 ## Mikroservisi
 
-![alt text][architecture_microservices]
+![alt text][microservices_architecture]
 
-[architecture_microservices]: meta/architecture_microservices.png
+[microservices_architecture]: meta/microservices_architecture.png
