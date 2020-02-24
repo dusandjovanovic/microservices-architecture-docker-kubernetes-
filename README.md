@@ -16,7 +16,7 @@ Izraz mikroservisi se odnosi na tehnike i prakse softverskog inženjerstva koje 
 
 Neke od komponenti ovakve arhitekture:
 
-* **Management** - upravljanje čvorovima servisa
-* **Identity provider** - upravljanje informacijama identifikacije u distribuiranom sistemu
-* **Service discovery** - servisi, adrese i ulazne tačke servisa
+* **Management** - upravljanje čvorovima servisa.
+* **Identity provider** - upravljanje informacijama identifikacije u distribuiranom sistemu.
+* **Service discovery** - servisi, adrese i ulazne tačke servisa.
 * **API Gateway** - koristi se kao jedina ulazna tačka za klijentsku stranu. Ova tačka vraća odgovore sa jednog ili više (agregirano) mikroservisa.
