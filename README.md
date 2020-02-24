@@ -21,8 +21,16 @@ Neke od komponenti ovakve arhitekture, pored mikroservisa, su...
 * **API gateway** - koristi se kao jedina ulazna tačka za klijentsku stranu. Ova tačka vraća odgovore sa jednog ili više (agregirano) mikroservisa.
 * **CDN** - mreža za statičke deljene resurse u sistemu.
 
-Mikroservisi se *deploy-uju* pojedinačno sa **odvojenim bazama podataka po svakom servisu**.
+Mikroservisi se *deploy-uju* pojedinačno sa **odvojenim bazama podataka po svakom servisu**. Za razliku od monolitne arhitekture, koja se bazira na jedinstvenom izvoru podataka i svim komponentama enkapsuliranim u jednom paketu, mikroservisi se baziraju na više odvojenih delova sistema koji funkcionišu ponaosob ali **mogu da razmenjuju poruke**.
 
 ![alt text][microservices_database]
 
 [microservices_database]: meta/microservices_database.png
+
+### Docker kontejneri
+
+Ovaj projekat će koristiti `Docker` kontejnere koji dele resurse operativnog sistema i omogućavaju virtualizaciju.
+
+### ASP.NET Core
+
+`ASP.NET Core` će biti korišćena tehnologija za pisanje mikroservisa. Svaki od servisa će imati odvojeni *DBContext* i posebnu bazu podataka kako bi se servis mogao *deploy-ovati* odvojeno.
