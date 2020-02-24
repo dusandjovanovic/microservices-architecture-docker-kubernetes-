@@ -1,1 +1,1 @@
-# Arhitektura mikroservisa - kontejneri, orkstraticija
+# Arhitektura mikroservisa - kontejneri, orkestracija servisa
