@@ -14,9 +14,15 @@ Izraz mikroservisi se odnosi na tehnike i prakse softverskog inženjerstva koje 
 
 [microservices_architecture]: meta/microservices_architecture.png
 
-Neke od komponenti ovakve arhitekture:
-
+Neke od komponenti ovakve arhitekture, pored mikroservisa, su...
 * **Management** - upravljanje čvorovima servisa.
 * **Identity provider** - upravljanje informacijama identifikacije u distribuiranom sistemu.
 * **Service discovery** - servisi, adrese i ulazne tačke servisa.
-* **API Gateway** - koristi se kao jedina ulazna tačka za klijentsku stranu. Ova tačka vraća odgovore sa jednog ili više (agregirano) mikroservisa.
+* **API gateway** - koristi se kao jedina ulazna tačka za klijentsku stranu. Ova tačka vraća odgovore sa jednog ili više (agregirano) mikroservisa.
+* **CDN** - mreža za statičke deljene resurse u sistemu.
+
+Mikroservisi se *deploy-uju* pojedinačno sa **odvojenim bazama podataka po svakom servisu**.
+
+![alt text][microservices_database]
+
+[microservices_database]: meta/microservices_database.png
