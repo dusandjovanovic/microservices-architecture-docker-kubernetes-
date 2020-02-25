@@ -34,3 +34,10 @@ Ovaj projekat će koristiti `Docker` kontejnere koji dele resurse operativnog si
 ### ASP.NET Core
 
 `ASP.NET Core` će biti korišćena tehnologija za pisanje mikroservisa. Svaki od servisa će imati odvojeni *DBContext* i posebnu bazu podataka kako bi se servis mogao *deploy-ovati* odvojeno.
+
+Pokazna aplikacija može da se koristi za čuvanje informacija o aktivnostima korisnika, a servisi od kojih se sastoji su:
+* `API gateway`
+* `Identity service` - autentifikacija, privilegije i informacije o registrovanim korisnicima
+* `Activities service` - čuvanje podataka o aktivnostima (opis, kategorije i slično)
+
+Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da kokretne događaje.
