@@ -41,3 +41,5 @@ Pokazna aplikacija može da se koristi za čuvanje informacija o aktivnostima ko
 * `Activities service` - čuvanje podataka o aktivnostima (opis, kategorije i slično)
 
 Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da kokretne događaje. Verzija okvira ASP.NET Core koja se koristi je poslednja stabilna, odnosno `3.1.0-stable`. Osnovna prednost ovakvog distribuiranog sistema je horizontalna skalabilnost.
+
+### Arhitektura sistema
