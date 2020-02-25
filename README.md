@@ -40,4 +40,4 @@ Pokazna aplikacija može da se koristi za čuvanje informacija o aktivnostima ko
 * `Identity service` - autentifikacija, privilegije i informacije o registrovanim korisnicima
 * `Activities service` - čuvanje podataka o aktivnostima (opis, kategorije i slično)
 
-Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da kokretne događaje.
+Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da kokretne događaje. Verzija okvira ASP.NET Core koja se koristi je poslednja stabilna, odnosno `3.1.0-stable`.
