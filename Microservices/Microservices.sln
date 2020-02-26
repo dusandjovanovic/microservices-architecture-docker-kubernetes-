@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5BCA8EBB-B73E-47C6-8542-5C6682648D53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Api", "src\Microservices.Api\Microservices.Api.csproj", "{73F94745-0CA0-494F-A0C1-298A7AE85396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Api", "src\Microservices.Api\Microservices.Api.csproj", "{73F94745-0CA0-494F-A0C1-298A7AE85396}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Common", "src\Microservices.Common\Microservices.Common.csproj", "{FBFDDE6A-E1C2-4559-B987-9827FDCD6BD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Common", "src\Microservices.Common\Microservices.Common.csproj", "{FBFDDE6A-E1C2-4559-B987-9827FDCD6BD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Services.Identity", "src\Microservices.Services.Identity\Microservices.Services.Identity.csproj", "{D2444BF5-4258-4049-912E-6CEB655EFE3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Services.Identity", "src\Microservices.Services.Identity\Microservices.Services.Identity.csproj", "{D2444BF5-4258-4049-912E-6CEB655EFE3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.Services.Activities", "src\Microservices.Services.Activities\Microservices.Services.Activities.csproj", "{7A2EE3A2-0AB2-44A2-BAB0-FED1930C198F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservices.Services.Activities", "src\Microservices.Services.Activities\Microservices.Services.Activities.csproj", "{7A2EE3A2-0AB2-44A2-BAB0-FED1930C198F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{73F94745-0CA0-494F-A0C1-298A7AE85396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -75,10 +72,16 @@ Global
 		{7A2EE3A2-0AB2-44A2-BAB0-FED1930C198F}.Release|x86.ActiveCfg = Release|Any CPU
 		{7A2EE3A2-0AB2-44A2-BAB0-FED1930C198F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{73F94745-0CA0-494F-A0C1-298A7AE85396} = {5BCA8EBB-B73E-47C6-8542-5C6682648D53}
 		{FBFDDE6A-E1C2-4559-B987-9827FDCD6BD6} = {5BCA8EBB-B73E-47C6-8542-5C6682648D53}
 		{D2444BF5-4258-4049-912E-6CEB655EFE3F} = {5BCA8EBB-B73E-47C6-8542-5C6682648D53}
 		{7A2EE3A2-0AB2-44A2-BAB0-FED1930C198F} = {5BCA8EBB-B73E-47C6-8542-5C6682648D53}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F792DF3-A473-4B54-A405-77ACBFA2F670}
 	EndGlobalSection
 EndGlobal

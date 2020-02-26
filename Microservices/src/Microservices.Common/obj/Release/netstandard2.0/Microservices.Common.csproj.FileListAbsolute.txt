@@ -1,0 +1,8 @@
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\bin\Release\netstandard2.0\Microservices.Common.deps.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\bin\Release\netstandard2.0\Microservices.Common.dll
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\bin\Release\netstandard2.0\Microservices.Common.pdb
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\obj\Release\netstandard2.0\Microservices.Common.csprojAssemblyReference.cache
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\obj\Release\netstandard2.0\Microservices.Common.AssemblyInfoInputs.cache
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\obj\Release\netstandard2.0\Microservices.Common.AssemblyInfo.cs
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\obj\Release\netstandard2.0\Microservices.Common.dll
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Common\obj\Release\netstandard2.0\Microservices.Common.pdb

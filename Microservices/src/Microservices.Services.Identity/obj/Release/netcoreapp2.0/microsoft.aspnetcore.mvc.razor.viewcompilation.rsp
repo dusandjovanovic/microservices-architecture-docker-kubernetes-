@@ -1,0 +1,5 @@
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Identity
+--output-path=obj\Release\netcoreapp2.0\
+--application-name=Microservices.Services.Identity
+--content-root=C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Identity
+--file=
