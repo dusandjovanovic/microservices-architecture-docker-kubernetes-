@@ -14,9 +14,32 @@ Izraz mikroservisi se odnosi na tehnike i prakse softverskog inženjerstva koje 
 
 [microservices_architecture]: meta/microservices_architecture.png
 
-Neke od komponenti ovakve arhitekture:
-
+Neke od komponenti ovakve arhitekture, pored mikroservisa, su...
 * **Management** - upravljanje čvorovima servisa.
 * **Identity provider** - upravljanje informacijama identifikacije u distribuiranom sistemu.
 * **Service discovery** - servisi, adrese i ulazne tačke servisa.
-* **API Gateway** - koristi se kao jedina ulazna tačka za klijentsku stranu. Ova tačka vraća odgovore sa jednog ili više (agregirano) mikroservisa.
+* **API gateway** - koristi se kao jedina ulazna tačka za klijentsku stranu. Ova tačka vraća odgovore sa jednog ili više (agregirano) mikroservisa.
+* **CDN** - mreža za statičke deljene resurse u sistemu.
+
+Mikroservisi se *deploy-uju* pojedinačno sa **odvojenim bazama podataka po svakom servisu**. Za razliku od monolitne arhitekture, koja se bazira na jedinstvenom izvoru podataka i svim komponentama enkapsuliranim u jednom paketu, mikroservisi se baziraju na više odvojenih delova sistema koji funkcionišu ponaosob ali **mogu da razmenjuju poruke**.
+
+![alt text][microservices_database]
+
+[microservices_database]: meta/microservices_database.png
+
+### Docker kontejneri
+
+Ovaj projekat će koristiti `Docker` kontejnere koji dele resurse operativnog sistema i omogućavaju virtualizaciju.
+
+### ASP.NET Core
+
+`ASP.NET Core` će biti korišćena tehnologija za pisanje mikroservisa. Svaki od servisa će imati odvojeni *DBContext* i posebnu bazu podataka kako bi se servis mogao *deploy-ovati* odvojeno.
+
+Pokazna aplikacija može da se koristi za čuvanje informacija o aktivnostima korisnika, a servisi od kojih se sastoji su:
+* `API gateway`
+* `Identity service` - autentifikacija, privilegije i informacije o registrovanim korisnicima
+* `Activities service` - čuvanje podataka o aktivnostima (opis, kategorije i slično)
+
+Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da kokretne događaje. Verzija okvira ASP.NET Core koja se koristi je poslednja stabilna, odnosno `3.1.0-stable`. Osnovna prednost ovakvog distribuiranog sistema je horizontalna skalabilnost.
+
+### Arhitektura sistema
