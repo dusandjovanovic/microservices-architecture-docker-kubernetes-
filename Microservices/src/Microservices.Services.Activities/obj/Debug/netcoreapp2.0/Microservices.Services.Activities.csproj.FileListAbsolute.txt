@@ -1,0 +1,16 @@
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Common.dll
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Services.Activities.dll
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Common.pdb
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\obj\Debug\netcoreapp2.0\Microservices.Services.Activities.csprojAssemblyReference.cache
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\obj\Debug\netcoreapp2.0\Microservices.Services.Activities.AssemblyInfoInputs.cache
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\obj\Debug\netcoreapp2.0\Microservices.Services.Activities.AssemblyInfo.cs
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\obj\Debug\netcoreapp2.0\Microservices.Services.Activities.dll
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\obj\Debug\netcoreapp2.0\Microservices.Services.Activities.pdb
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\appsettings.Development.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\appsettings.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Properties\launchSettings.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Services.Activities.deps.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Services.Activities.runtimeconfig.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Services.Activities.runtimeconfig.dev.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Services.Activities.pdb
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\obj\Debug\netcoreapp2.0\Microservices.Services.Activities.csproj.CopyComplete
