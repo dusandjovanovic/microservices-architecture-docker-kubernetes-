@@ -412,6 +412,12 @@ Odgovor:
 
 #### Snapshot baza podataka
 
+Za svaki mikroservis postoji odvojena instanca **MongoDB baze** podataka i jedino izvorni servis ima komunikaciju sa lokalnom bazom.
+
+![alt text][mongodb]
+
+[mongodb]: meta/mongodb.png
+
 Baza podataka `Microservices-Activities`>
 
 ```
