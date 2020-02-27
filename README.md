@@ -336,12 +336,97 @@ Kako servisi zavise od **MongoDB** i **RabbitMQ** okruženja neophodno je pokren
 
 `$ docker run -p 5672:5672 rabbitmq`
 
-### Testiranje endpoint-a
+### Testiranje API endpointa
 
-#### Registrovanje korisnika
+#### Registrovanje
 
 ```sh
 curl --location --request POST 'http://localhost:5000/api/users?=' \
 --header 'Content-Type: application/json' \
---data-raw '{email: "dusanjo@stud.ntnu.no", password: "secret"}'
+--data-raw '{
+	"email": "dusanjovanovic@stud.ntnu.no", 
+	"password": "secret",
+	"name": "Dusan"
+}'
+```
+
+#### Prijavljivanje
+
+```sh
+curl --location --request POST 'http://localhost:5050/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"email": "dusanjovanovic@stud.ntnu.no",
+	"password": "secret"
+}'
+```
+
+Odgovor koji sadrži token koji zatim treba koristiti u ostalim zahtevima:
+
+```sh
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZmJjYzc0Zi05OTUzLTRmZjgtODA4My0wNTBlMDBhMzk1OGIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJpYXQiOjE1ODI4MTU4ODMsImV4cCI6MTU4MjgxOTQ4MywidW5pcXVlX25hbWUiOiI0ZmJjYzc0Zi05OTUzLTRmZjgtODA4My0wNTBlMDBhMzk1OGIifQ.R1i5c-dlSqT1BBYBsDXsq7sRz5NEDaXEV4xX7Vqugi4",
+    "expires": 1582819483
+}
+```
+
+#### Dodavanje aktivnosti
+
+```sh
+curl --location --request POST 'http://localhost:5000/api/activities' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: bearer <token>' \
+--data-raw '{
+	"name": "some_activity",
+	"category": "work",
+	"description": "some activity description.."
+}'
+```
+
+#### Pribavljanje svih aktivnosti
+
+```sh
+curl --location --request GET 'http://localhost:5000/api/activities' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: bearer <token>'
+```
+
+Odgovor:
+
+```sh
+[
+    {
+        "id": "ba4feb21-be1d-4f6f-8a26-1a161ff9a26e",
+        "name": "some_activity",
+        "category": "work",
+        "createdAt": "2020-02-27T14:06:17.106Z"
+    },
+    {
+        "id": "73df2f44-c2c1-4b97-8c21-6bd31a0e67ce",
+        "name": "another_activity",
+        "category": "work",
+        "createdAt": "2020-02-27T14:07:25.768Z"
+    }
+]
+```
+
+#### Pribavljanje aktivnosti po ID-u
+
+```sh
+curl --location --request GET 'http://localhost:5000/api/activities/ba4feb21-be1d-4f6f-8a26-1a161ff9a26e' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: bearer <token>'
+```
+
+Odgovor:
+
+```sh
+{
+    "id": "ba4feb21-be1d-4f6f-8a26-1a161ff9a26e",
+    "userId": "4fbcc74f-9953-4ff8-8083-050e00a3958b",
+    "category": "work",
+    "name": "some_activity",
+    "description": "some activity description..",
+    "createdAt": "2020-02-27T14:06:17.106Z"
+}
 ```
