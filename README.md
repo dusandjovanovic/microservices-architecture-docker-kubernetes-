@@ -430,3 +430,39 @@ Odgovor:
     "createdAt": "2020-02-27T14:06:17.106Z"
 }
 ```
+
+#### Snapshot baza podataka
+
+Baza podataka `Microservices-Activities`>
+
+```
+Collection[Activities]:
+{"_id":{"$binary":{"base64":"BwxDEKZXKU2yYr1nwdO5HA==","subType":"03"}},"userId":{"$binary":{"base64":"DVOL0oArtkCnKedJXjw5/w==","subType":"03"}},"name":"activity_01","category":"work","description":"Work activity","createdAt":{"$date":{"$numberLong":"1582750398263"}}}
+{"_id":{"$binary":{"base64":"IetPuh2+b0+KJhoWH/mibg==","subType":"03"}},"userId":{"$binary":{"base64":"T8e8T1OZ+E+AgwUOAKOViw==","subType":"03"}},"name":"some_activity","category":"work","description":"some activity description..","createdAt":{"$date":{"$numberLong":"1582812377106"}}}
+{"_id":{"$binary":{"base64":"RC/fc8HCl0uMIWvTGg5nzg==","subType":"03"}},"userId":{"$binary":{"base64":"T8e8T1OZ+E+AgwUOAKOViw==","subType":"03"}},"name":"another_activity","category":"work","description":"another activity description..","createdAt":{"$date":{"$numberLong":"1582812445768"}}}
+	
+Collection[Categories]:
+{"_id":{"$binary":{"base64":"W2li27zID0mpWh6/JueCIQ==","subType":"03"}},"name":"work"}
+{"_id":{"$binary":{"base64":"UKN3+7oWlkKrJzEfsOQ33w==","subType":"03"}},"name":"hobby"}
+{"_id":{"$binary":{"base64":"dCUvuGK6q0WJf35H9yN6Qg==","subType":"03"}},"name":"sport"}
+```
+
+Baza podataka `Microservices-Identity`>
+
+```
+Collection[Users]:
+{"_id":{"$binary":{"base64":"DVOL0oArtkCnKedJXjw5/w==","subType":"03"}},"email":"dusanjov@elfak.rs","name":"Dusan","password":"OG2g4W/WUHIgAnU9l3NDtCCHSZkbBPQL2tXTdtz3JQSgbx1zlRAiiQ==","salt":"mHIGEH6uFGBXKqohEWloSNbiv1092CzxUb2YCPxDfi73kOSrTDQ11w==","createdAt":{"$date":{"$numberLong":"1582736041381"}}}
+{"_id":{"$binary":{"base64":"T8e8T1OZ+E+AgwUOAKOViw==","subType":"03"}},"email":"dusanjovanovic@stud.ntnu.no","name":"Dusan","password":"WACqoRok1fWUrsuqI2WpHiqh6c0r6G4wJdHepKtelWs9HN35oTbX+w==","salt":"0Nt3KsY+R/4HKUDs/TL7ZgLws2XOddp/aO3y3b++E4q2z7IbDUbY7Q==","createdAt":{"$date":{"$numberLong":"1582812187457"}}}
+
+```
+
+Baza podataka `Microservices-Gateway`>
+
+```
+Collection[Activities]:
+{"_id":{"$binary":{"base64":"BwxDEKZXKU2yYr1nwdO5HA==","subType":"03"}},"userId":{"$binary":{"base64":"DVOL0oArtkCnKedJXjw5/w==","subType":"03"}},"category":"work","name":"activity_01","description":"Work activity","createdAt":{"$date":{"$numberLong":"1582750398263"}}}
+{"_id":{"$binary":{"base64":"IetPuh2+b0+KJhoWH/mibg==","subType":"03"}},"userId":{"$binary":{"base64":"T8e8T1OZ+E+AgwUOAKOViw==","subType":"03"}},"category":"work","name":"some_activity","description":"some activity description..","createdAt":{"$date":{"$numberLong":"1582812377106"}}}
+{"_id":{"$binary":{"base64":"RC/fc8HCl0uMIWvTGg5nzg==","subType":"03"}},"userId":{"$binary":{"base64":"T8e8T1OZ+E+AgwUOAKOViw==","subType":"03"}},"category":"work","name":"another_activity","description":"another activity description..","createdAt":{"$date":{"$numberLong":"1582812445768"}}}
+
+
+```
