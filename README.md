@@ -308,3 +308,21 @@ Drugi servis koji poseduje interfejs je takođe prikazan na sledećoj slici.
 ![alt text][api_identity]
 
 [api_identity]: meta/api_identity.png
+
+## Lokalno testiranje servisa
+
+Svaki od projekata treba odvojeno pokrenuti na posebnom portu.
+
+`$ dotnet run` za `Microservices.Api`
+
+`$ dotnet run --urls "http://localhost:5050"` za `Microservices.Services.Identity`
+
+`$ dotnet run --urls "http://localhost:5051"` za `Microservices.Services.Activities`
+
+Nakon pokretanja treba očekivati sledeći output konzole:
+
+```sh
+\Microservices.Services.Activities
+Now listening on: http://localhost:5051
+Application started. Press Ctrl+C to shut down.
+```
