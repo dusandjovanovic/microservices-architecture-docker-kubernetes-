@@ -572,7 +572,7 @@ Prema tome, image-i se mogu preuzeti sa hub-a komandom poput `$ docker pull dusa
 
 Kako je već formirana datoteka `docker-compose.yaml`, ista se može iskoristiti za deployment na *Kubernetes cluster* koji se sastoji od jednog master-čvora i više worker-čvorova. Na osnovu ove datoteka formirane su ostale deployment konfiguracije koje se mogu naći u direktorijumu [/Microservices/deploy](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy).
 
-Na primeru gateway mikroservisa:
+Na primeru gateway mikroservisa se može primetiti da su potrebne dve datoteke po mirkservisu. Datoteka koja opisuje deployment i adresu docker image-a, kao i servis datoteka za otkrivanje portova ka mikroservisu.
 
 #### `api-service.yaml`
 
@@ -598,6 +598,17 @@ spec:
 status:
   loadBalancer: {}
 ```
+
+Deo servisne datoteke koji otkriva portove ka hostovanom image-u:
+
+```yaml
+ports:
+- name: "5000"
+port: 5000
+targetPort: 5000
+```
+
+Takođe, neophodna je datoteka za opisivanje deployment-a samog image fajla. Ovde se može detaljnije izvršiti konfiguracija parametara kao što su **politika restart-a** i **broj replika**.
 
 #### `api-service.yaml`
 
@@ -635,6 +646,21 @@ spec:
       restartPolicy: Always
 status: {}
 ```
+
+```yaml
+replicas: 1
+...
+spec:
+      containers:
+      - image: dusandjovanovic/microservices.api
+        name: api
+        ports:
+        - containerPort: 5000
+        resources: {}
+      restartPolicy: Always
+```
+
+Ovim kodom se govori `Kubernetes-u` da je potrebna samo jedna replika `pod-a`, kao i da treba primeniti politiku restarta `Always`. Ova politika se primenjuje nad svim kontejnerima u `pod-u` što je u ovom slučaju samo jedan. Kontejneri koji su ugašeni su restartovani od strane `kubelet-a` sa određenim eksponencijalnim *back-off* kašnjenjem.
 
 Pokretanje uz orkestraciju na clusteru se sastoji od više koraka, neophodno je pre svega postaviti `Kubernetes` sa `minicube-om`. Kao pomoćni alat za podizanje i konverziju kompozitnog docker okruženja korišćen je `kompose`. Bilo je neophodno koristiti live image-e mikroservisa sa Docker hub-a.
 
