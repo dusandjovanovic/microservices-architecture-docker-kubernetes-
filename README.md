@@ -101,7 +101,9 @@ Direktorijum `Microservices.Common/Events` opisuje događaje:
 
 #### `Microservices.Api`
 
-Gateway servis poseduje tri kontrolera.
+Gateway servis poseduje tri kontrolera. Prilikom pogodaka endpoint-a generiše komande `CreateActivity` i `CreateUser`. Ove komande konzumiraju ostala dva servisa, menjaju lokalne baze podataka i odgovaraju događajima `ActivityCreated` i `UserCreated`. Ukoliko podaci nisu odgovarajući, odgovaraju na komande događajima `CreateActivityRejected` i `CreateUserRejected`. Pomenute događaje odgovore konzumira gateway servis.
+
+`HomeController` nema posebne funkcionalnosti osim osnovnog šablonskog endpoint-a.
 
 ##### `root/`
 
@@ -147,7 +149,7 @@ namespace Microservices.Api.Controllers
 }
 ```
 
-### `root/api/activities`
+#### `root/api/activities`
 
 `ActivitiesController` poseduje više endpoint-a za pribavljanje svih dodatih aktivnosti, pribavljanje konkretne aktivnosti i dodavanje novih aktivnosti. "Flattened" kopije aktivnosti se nalaze u isto vreme u bazi podataka `Microservices.Api` servisa. Takođe, prilikom dodavanja novih aktivnosti su dodate u bazi servisa `Microservices.Services.Activities`.
 
@@ -205,4 +207,88 @@ Prilikom `GET` zahteva se tako zbog jednostavnosti koriste kopije podataka gatew
             return Accepted($"activities/{command.Id}");
         }
     }
+```
+
+Dakle, osnovna funkcionalnost gateway servisa je koordinacija komandi i događaja. Pored toga, sadrži i kopije podataka `Microservices.Services.Activities` servisa kojima se odgovara na `GET` zahteve, a suprotno tome, u slučaju `POST` zahteva se kontaktiraju servisi `Microservices.Services.Activities` i `Microservices.Services.Identity` kako bi modifikovali lokalne baze podataka.
+
+#### `Microservices.Services.Identity`
+
+Ovaj servis poseduje jedan kontroler zadužen za prijavljivanje korisnika. Pored endpointa za prijavljivanje, reaktivan je na komandu `CreateUser` koju emituje gateway servis - gde će posledica biti dodavanje korisnika u lokalnu bazu podataka.
+
+`AccountController` na ruti `/login` očekuje email i password korisnika i kao rezultat vraća **JsonWebToken** koji zatim treba koristiti prilikom gađanja ostalih endpoint-a gateway servisa.
+
+##### `root/`
+
+```c#
+namespace Microservices.Services.Identity.Controllers
+{
+    [Route("")]
+    public class AccountController : Controller
+    {
+        private readonly IUserService _userService;
+
+        public AccountController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] AuthenticateUser command)
+            => Json(await _userService.LoginAsync(command.Email, command.Password));
+
+        [HttpGet("")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult Get() => Content("Secured_API");
+    }
+}
+```
+
+#### `Microservices.Services.Activities`
+
+Ovaj servis ne poseduje API već je samo reaktivan na komande koje emituje gateway servis. Komanda koju osluškuje je `CreateActivity` i tada dolazi do modifikacije lokalne baze podataka i dodavanja prosleđenih podataka u vidu još jedne aktivnosti. 
+
+```c#
+ public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc();
+    services.AddLogging();
+    services.AddMongoDB(Configuration);
+    services.AddRabbitMq(Configuration);
+    services.AddScoped<ICommandHandler<CreateActivity>, CreateActivityHandler>();
+    services.AddScoped<IActivityRepository, ActivityRepository>();
+    services.AddScoped<ICategoryRepository, CategoryRepository>();
+    services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
+    services.AddScoped<IActivityService, ActivityService>();
+}
+```
+
+Odgovor na komandu se sastoji od **dodavanja `recorda` u bazu lokalnu podataka** i **emitovanje događaja `ActivityCreated`** na koji je reaktivan gateway servis.
+
+```c#
+public async Task HandleAsync(CreateActivity command)
+{
+    _logger.LogInformation($"Creating activity: '{command.Id}' for user: '{command.UserId}'.");
+    try
+    {
+        await _activityService.AddAsync(command.Id, command.UserId,
+            command.Category, command.Name, command.Description, command.CreatedAt);
+        await _busClient.PublishAsync(new ActivityCreated(command.Id,
+            command.UserId, command.Category, command.Name, command.Description, command.CreatedAt));
+        _logger.LogInformation($"Activity: '{command.Id}' was created for user: '{command.UserId}'.");
+
+        return;
+    }
+    catch (MicroserviceException ex)
+    {
+        _logger.LogError(ex, ex.Message);
+        await _busClient.PublishAsync(new CreateActivityRejected(command.Id,
+            ex.Message, ex.Code));
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, ex.Message);
+        await _busClient.PublishAsync(new CreateActivityRejected(command.Id,
+            ex.Message, "error"));
+    }
+}
 ```
