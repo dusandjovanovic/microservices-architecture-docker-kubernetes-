@@ -725,6 +725,6 @@ Da bi se izvršio deployment, gateway servisa na primer, i video rezultat korist
 
 `$ kubectl get services`
 
-![alt text][kubernetes_terminal.png]
+![alt text][kubernetes_terminal]
 
 [kubernetes_terminal]: meta/kubernetes_terminal.png
