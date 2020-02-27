@@ -475,7 +475,7 @@ Zatim, neophodno je uraditi:
 
 Ovo je postupak za svaki od servisa. Takođe **MongoDB** i **RabbitMQ** okruženja se izvršavaju u **posebnim kontejnerima**.
 
-### Docker Compose
+### Docker compose
 
 Kako bi se izvršila kompozicija svih servisa i potrebnih okruženja koristi se **Compose** mogućnost docker-a. U direktorijumu `Microservices/deploy` nalazi se opisna `docker-compose.yaml` datoteka.
 
@@ -536,3 +536,17 @@ services:
       - '5672:5672'
       - '15672:15672'
 ```
+
+### Docker compose-up
+
+`$ docker-compose up` komandom se pokreće kompozicija svih kontejnera na osnovu `.yaml` datoteke.
+
+`$ docker ps -a` daje pregled svih aktivnih kontejnera.
+
+![alt text][docker_composeup]
+
+[docker_composeup]: meta/docker_composeup.png
+
+![alt text][docker_psa]
+
+[docker_psa]: meta/docker_psa.png
