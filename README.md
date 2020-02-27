@@ -567,3 +567,8 @@ Prema tome, image-i se mogu preuzeti sa hub-a komandom poput `$ docker pull dusa
 ![alt text][docker_hub]
 
 [docker_hub]: meta/docker_hub.png
+
+## Kubernetes
+
+Kako je već formirana datoteka `docker-compose.yaml`, ista se može iskoristiti za deployment na *Kubernetes cluster*. Na osnovu ove datoteka formirane su ostale deployment konfiguracije koje se mogu naći u direktorijumu [/Microservices/deploy](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy).
+
