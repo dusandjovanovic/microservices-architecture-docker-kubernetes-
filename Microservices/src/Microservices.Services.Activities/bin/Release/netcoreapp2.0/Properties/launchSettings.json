@@ -20,18 +20,16 @@
     },
     "Microservices.Services.Activities": {
       "commandName": "Project",
-      "commandLineArgs": "--urls \"http://*:5050\"",
+      "commandLineArgs": "--urls \"http://localhost:5051\"",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5050"
+      "applicationUrl": "http://localhost:5051"
     },
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/weatherforecast",
       "publishAllPorts": true
     }
   }
