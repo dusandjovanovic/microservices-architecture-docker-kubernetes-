@@ -572,3 +572,80 @@ Prema tome, image-i se mogu preuzeti sa hub-a komandom poput `$ docker pull dusa
 
 Kako je već formirana datoteka `docker-compose.yaml`, ista se može iskoristiti za deployment na *Kubernetes cluster*. Na osnovu ove datoteka formirane su ostale deployment konfiguracije koje se mogu naći u direktorijumu [/Microservices/deploy](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy).
 
+Na primeru gateway mikroservisa:
+
+#### `api-service.yaml`
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+      convert
+    kompose.version: 1.20.0 (f3d54d784)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api
+  name: api
+spec:
+  ports:
+  - name: "5000"
+    port: 5000
+    targetPort: 5000
+  selector:
+    io.kompose.service: api
+status:
+  loadBalancer: {}
+```
+
+#### `api-service.yaml`
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+      convert
+    kompose.version: 1.20.0 (f3d54d784)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: api
+  name: api
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+          convert
+        kompose.version: 1.20.0 (f3d54d784)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: api
+    spec:
+      containers:
+      - image: dusandjovanovic/microservices.api
+        name: api
+        ports:
+        - containerPort: 5000
+        resources: {}
+      restartPolicy: Always
+status: {}
+```
+
+Pokretanje uz orkestraciju na clusteru se sastoji od više koraka, neophodno je pre svega postaviti `Kubernetes` sa `minicube-om`. Kao pomoćni alat za podizanje i konverziju kompozitnog docker okruženja korišćen je `kompose`. Bilo je neophodno koristiti live image-e mikroservisa sa Docker hub-a.
+
+`$ minikube start --vm-driver=hyperv`
+
+`$ minikube dashboard`
+
+![alt text][kubernetes_dashboard.png]
+
+[kubernetes_dashboard.png]: meta/kubernetes_dashboard.png
+
+![alt text][kubernetes_dashboard_alt.png]
+
+[kubernetes_dashboard_alt.png]: meta/kubernetes_dashboard_alt.png
