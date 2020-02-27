@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+      convert
+    kompose.version: 1.20.0 (f3d54d784)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: identity-service
+  name: identity-service
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+          convert
+        kompose.version: 1.20.0 (f3d54d784)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: identity-service
+    spec:
+      containers:
+      - image: dusandjovanovic/microservices.identity
+        name: identity-service
+        ports:
+        - containerPort: 5051
+        resources: {}
+      restartPolicy: Always
+status: {}

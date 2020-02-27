@@ -9,7 +9,7 @@ services:
     command: rabbitmq:5672
 
   api:
-    image: dusandjovanovic/microservices.api
+    build: ../src/Microservices.Api
     links:
       - rabbitmq
       - mongo
@@ -17,7 +17,7 @@ services:
       - '5000:5000'
 
   activities-service:
-    image: dusandjovanovic/microservices.activities
+    build: ../src/Microservices.Services.Activities
     links:
       - rabbitmq
       - mongo
@@ -25,7 +25,7 @@ services:
       - '5050:5050'
 
   identity-service:
-    image: dusandjovanovic/microservices.identity
+    build: ../src/Microservices.Services.Identity
     links:
       - rabbitmq
       - mongo
