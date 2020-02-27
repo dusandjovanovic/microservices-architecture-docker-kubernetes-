@@ -301,7 +301,7 @@ Svaki od projekata treba odvojeno pokrenuti na posebnom portu.
 Nakon pokretanja treba očekivati sledeći output konzole:
 
 ```sh
-dotnet run
+$ dotnet run >
 Hosting environment: Development
 Content root path: ...\src\Microservices.Api
 Now listening on: http://localhost:5000
@@ -320,7 +320,7 @@ Kako servisi zavise od **MongoDB** i **RabbitMQ** okruženja neophodno je pokren
 #### `POST http://gateway_api/api/users` za registrovanje
 
 ```sh
-curl --location --request POST 'http://localhost:5000/api/users?=' \
+$ curl --location --request POST 'http://localhost:5000/api/users?=' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 	"email": "dusanjovanovic@stud.ntnu.no", 
@@ -332,7 +332,7 @@ curl --location --request POST 'http://localhost:5000/api/users?=' \
 #### `POST http://identity_api/login` za prijavljivanje
 
 ```sh
-curl --location --request POST 'http://localhost:5050/login' \
+$ curl --location --request POST 'http://localhost:5050/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 	"email": "dusanjovanovic@stud.ntnu.no",
@@ -352,7 +352,7 @@ Odgovor koji sadrži token koji zatim treba koristiti u ostalim zahtevima:
 #### `POST http://gateway_api/api/activities` za dodavanje aktivnosti
 
 ```sh
-curl --location --request POST 'http://localhost:5000/api/activities' \
+$ curl --location --request POST 'http://localhost:5000/api/activities' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: bearer <token>' \
 --data-raw '{
@@ -365,7 +365,7 @@ curl --location --request POST 'http://localhost:5000/api/activities' \
 #### `GET http://gateway_api/api/activities` za pribavljanje svih aktivnosti
 
 ```sh
-curl --location --request GET 'http://localhost:5000/api/activities' \
+$ curl --location --request GET 'http://localhost:5000/api/activities' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: bearer <token>'
 ```
@@ -392,7 +392,7 @@ Odgovor:
 #### `GET http://gateway_api/api/activities/{Id}` za pribavljanje jedne aktivnosti
 
 ```sh
-curl --location --request GET 'http://localhost:5000/api/activities/ba4feb21-be1d-4f6f-8a26-1a161ff9a26e' \
+$ curl --location --request GET 'http://localhost:5000/api/activities/ba4feb21-be1d-4f6f-8a26-1a161ff9a26e' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: bearer <token>'
 ```
@@ -444,4 +444,25 @@ Collection[Activities]:
 {"_id":{"$binary":{"base64":"RC/fc8HCl0uMIWvTGg5nzg==","subType":"03"}},"userId":{"$binary":{"base64":"T8e8T1OZ+E+AgwUOAKOViw==","subType":"03"}},"category":"work","name":"another_activity","description":"another activity description..","createdAt":{"$date":{"$numberLong":"1582812445768"}}}
 
 
+```
+
+## Docker kontejneri
+
+Iz svega do sada priloženog može se primetiti da je sistem podeljen na više zasebnih komponenti. Postoje tri zasebna mikroservisa, kao i instance **MongoDB baze podataka** i **RabbitMQ brokera**.
+
+Prema tome, biće potrebno ukupno pet docker kontejnera.
+
+### DotNet kontejneri
+
+Za svaki od servisa je neophodan **image i kontejner** u kome će se izvršavati. Prema tome, neophodno je formirati instrukcije kako **build-ovati image** na osnovu datoteke `Dockerfile`.
+
+Na primeru `Microservices.Api` mikroservisa:
+
+```dockerfile
+FROM microsoft/dotnet:2.0.0-runtime
+WORKDIR /dotnetapp
+COPY ./bin/Docker .
+ENV ASPNETCORE_URLS http://*:5000
+ENV ASPNETCORE_ENVIRONMENT docker
+ENTRYPOINT dotnet Microservices.Api.dll
 ```
