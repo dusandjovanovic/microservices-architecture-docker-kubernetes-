@@ -322,7 +322,19 @@ Svaki od projekata treba odvojeno pokrenuti na posebnom portu.
 Nakon pokretanja treba očekivati sledeći output konzole:
 
 ```sh
-\Microservices.Services.Activities
-Now listening on: http://localhost:5051
+dotnet run
+Hosting environment: Development
+Content root path: ...\src\Microservices.Api
+Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
+
 ```
+
+Kako servisi zavise od **MongoDB** i **RabbitMQ** okruženja neophodno je pokrenuti i odgovarajuće docker kontejnere.
+
+`$ docker run -d -p 27017:27017 mongo`
+
+`$ docker run -p 5672:5672 rabbitmq`
+
+### Testiranje endpoint-a
+
