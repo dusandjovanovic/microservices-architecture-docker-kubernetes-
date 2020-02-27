@@ -42,7 +42,7 @@ Pokazna aplikacija može da se koristi za čuvanje informacija o aktivnostima ko
 
 Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da događaje koje generišu ostali servisi. Osnovna prednost ovakvog distribuiranog sistema je horizontalna skalabilnost.
 
-### Arhitektura sistema
+## Arhitektura sistema
 
 ```
 /Microservices/src
@@ -85,13 +85,47 @@ Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da događaje koj
 
 `Microservices.Common` je projekat deljenih funkcionalnosti-klasa koje koriste ostali servisi. Primeri su ostvarivanje parametrizovane konekcije sa **MongoDB bazama podataka**, povezivanje na **RabbitMQ** sistem za razmenu poruka ili pak oblikovanje svih **događaja i komandi** koje se koriste u sistemu.
 
-Nad **RabbitMQ** messaging sistemom se bazira komunikacija između servisa. Sastoji se u objavljivanju **događaja** od strane jednog servisa i konzumiranja događaja od strane drugog pretplaćenog servisa u vidu izvršavanja **komande**.
+Nad **RabbitMQ** messaging sistemom se bazira komunikacija između servisa. Sastoji se u objavljivanju **komandi** od strane jednog servisa i konzumiranja istih od strane drugog pretplaćenog servisa u vidu izvršavanja **komande** i emitovanja **događaja**.
+
+Direktorijum `Microservices.Common/Commands` opisuje komande:
+* `ICommand`, `IAuthenticatedCmmand` interfejsi
+* `CreateActivity`, `AuthenticateUser` i `CreateUser` su primeri komandi
 
 Direktorijum `Microservices.Common/Events` opisuje događaje:
 * `IEvent`, `IRejectedEvent` i `IAuthenticatedEvent` interfejsi
 * `ActivityCreated`, `UserAuthenticated` i `UserCreted` su primeri događaja koji nastaju
 
-Direktorijum `Microservices.Common/Commands` opisuje komande:
-* `ICommand`, `IAuthenticatedCmmand` interfejsi
-* `CreateActivity`, `AuthenticateUser` i `CreateUser` su primeri komandi kao posledice događaja
+`Microservices.Api` je gateway servis sistema i sastoji se od tri kontrolera koji oblikuju endpoint tačke. `Microservices.Services.Activities` je servis koji nema javni API već samo konzumira komande, sa druge strane, `Microservices.Services.Identity` je servis koji poput gateway servisa takođe poseduje API.
 
+### Implementacioni detalji servisa
+
+#### `Microservices.Api`
+
+Gateway servis poseduje tri kontrolera.
+
+##### `~/`
+
+```c#
+namespace Microservices.Api.Controllers
+{
+    [Produces("application/json")]
+    [Route("api/users")]
+    public class UsersController : Controller
+    {
+        private readonly IBusClient _busClient;
+
+        public UsersController(IBusClient busClient)
+        {
+            _busClient = busClient;
+        }
+
+        [HttpPost("")]
+        public async Task<IActionResult> Post([FromBody]CreateUser command)
+        {
+            await _busClient.PublishAsync(command);
+
+            return Accepted();
+        }
+    }
+}
+```
