@@ -471,7 +471,6 @@ Zatim, neophodno je uraditi:
 * `$ dotnet publish -c Release -o ./bin/Docker` za objavljivanje projekta
 * `$ docker build -t microservices.api .` za build-ovanje image instance
 * `$ docker run -p 5000:5000 microservices.api` za lokalno pokretanje
-* `$ docker tag microservices.api dusandjovanovic/microservices.api $ docker push dusandjovanovic/microservices.api` za postavljanje image datoteke na Hub
 
 Ovo je postupak za svaki od servisa. Takođe **MongoDB** i **RabbitMQ** okruženja se izvršavaju u **posebnim kontejnerima**.
 
@@ -550,3 +549,15 @@ services:
 ![alt text][docker_psa]
 
 [docker_psa]: meta/docker_psa.png
+
+### Docker hub
+
+Svaki od image-a mirkoservisa može se objaviti na `Docker hub-u` uz nekoliko komandi:
+* `$ docker tag microservices.api dusandjovanovic/microservices.api` za označavanje image-a
+* `$ docker push dusandjovanovic/microservices.api` za postavljanje image-a na Hub
+
+Prema tome, image-i se mogu preuzeti sa hub-a komandom poput `$ docker pull dusandjovanovic/microservices.api` i pokrenuti lokalno. Ovo treba uraditi za svaki od mikroservisa pojedinačno.
+
+![alt text][docker_hub]
+
+[docker_hub]: meta/docker_hub.png
