@@ -670,10 +670,61 @@ Pokretanje uz orkestraciju na clusteru se sastoji od više koraka, neophodno je 
 
 `$ cd Microservices/deploy && kompose up`
 
-![alt text][kubernetes_dashboard.png]
+![alt text][kubernetes_dashboard]
 
-[kubernetes_dashboard.png]: meta/kubernetes_dashboard.png
+[kubernetes_dashboard]: meta/kubernetes_dashboard.png
 
-![alt text][kubernetes_dashboard_alt.png]
 
-[kubernetes_dashboard_alt.png]: meta/kubernetes_dashboard_alt.png
+### Custom konfig
+
+Konfiguracija koja je prethodno objašnjena je generisana, pored ove je napisana i ručna konfiguracija za svaki od kontejnera. `.yaml` datoteke se mogu naći u [/Microservices/deploy/kuberenetes-custom](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy/kuberenetes-custom). Za svaki od mikroservisa postoji posebna datoteka.
+
+Na primer, za gateway servis:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: microservices-api
+spec: 
+  selector: 
+    matchLabels: 
+      app: microservices-api 
+  replicas: 2
+  template: 
+    metadata: 
+      labels: 
+        app: microservices-api 
+    spec: 
+      containers: 
+      - name: microservices-api
+        image: dusandjovanovic/microservices.api
+        ports: 
+        - containerPort: 5000
+---
+kind: Service 
+apiVersion: v1
+metadata: 
+  name: microservices-api-service
+spec: 
+  selector: 
+    app: microservices-api 
+  ports: 
+  - protocol: TCP 
+    port: 5000 
+    targetPort: 5000
+```
+
+Datoteka poseduje dva dela, opisni deo koji daje detalje deployment-a i servisni. U ovom slučaju se kontejner pokreće na **`pod-u` sa dve replike** otkrivenom na portu `:5000`.
+
+Da bi se izvršio deployment, gateway servisa na primer, i video rezultat koristi se niz komandi:
+
+`$ kubectl apply -f api.yaml`
+
+`$ kubectl get deployments`
+
+`$ kubectl get services`
+
+![alt text][kubernetes_terminal.png]
+
+[kubernetes_terminal]: meta/kubernetes_terminal.png
