@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: microservices-api
+spec: 
+  selector: 
+    matchLabels: 
+      app: microservices-api 
+  replicas: 2
+  template: 
+    metadata: 
+      labels: 
+        app: microservices-api 
+    spec: 
+      containers: 
+      - name: microservices-api
+        image: dusandjovanovic/microservices.api
+        ports: 
+        - containerPort: 5000
+---
+kind: Service 
+apiVersion: v1
+metadata: 
+  name: microservices-api-service
+spec: 
+  selector: 
+    app: microservices-api 
+  ports: 
+  - protocol: TCP 
+    port: 5000 
+    targetPort: 5000

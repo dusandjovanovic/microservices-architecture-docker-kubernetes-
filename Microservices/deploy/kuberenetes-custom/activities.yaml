@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: microservices-activities
+spec: 
+  selector: 
+    matchLabels: 
+      app: microservices-activities 
+  replicas: 2
+  template: 
+    metadata: 
+      labels: 
+        app: microservices-activities 
+    spec: 
+      containers: 
+      - name: microservices-activities
+        image: dusandjovanovic/microservices.activities
+        ports: 
+        - containerPort: 5050
+---
+kind: Service 
+apiVersion: v1
+metadata: 
+  name: microservices-activities-service
+spec: 
+  selector: 
+    app: microservices-activities 
+  ports: 
+  - protocol: TCP 
+    port: 5050 
+    targetPort: 5050

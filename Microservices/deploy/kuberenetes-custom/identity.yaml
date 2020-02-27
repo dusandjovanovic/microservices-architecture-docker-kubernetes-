@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: microservices-identity
+spec: 
+  selector: 
+    matchLabels: 
+      app: microservices-identity 
+  replicas: 2
+  template: 
+    metadata: 
+      labels: 
+        app: microservices-identity 
+    spec: 
+      containers: 
+      - name: microservices-identity
+        image: dusandjovanovic/microservices.identity
+        ports: 
+        - containerPort: 5051
+---
+kind: Service 
+apiVersion: v1
+metadata: 
+  name: microservices-identity-service
+spec: 
+  selector: 
+    app: microservices-identity 
+  ports: 
+  - protocol: TCP 
+    port: 5051 
+    targetPort: 5051
