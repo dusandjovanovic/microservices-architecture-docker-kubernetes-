@@ -466,3 +466,11 @@ ENV ASPNETCORE_URLS http://*:5000
 ENV ASPNETCORE_ENVIRONMENT docker
 ENTRYPOINT dotnet Microservices.Api.dll
 ```
+
+Zatim, neophodno je uraditi:
+* `$ dotnet publish -c Release -o ./bin/Docker` za objavljivanje projekta
+* `$ docker build -t microservices.api .` za build-ovanje image instance
+* `$ docker run -p 5000:5000 microservices.api` za lokalno pokretanje
+* `$ docker tag microservices.api dusandjovanovic/microservices.api $ docker push dusandjovanovic/microservices.api` za postavljanje image datoteke na Hub
+
+Ovo je postupak za svaki od servisa. Takođe **MongoDB** i **RabbitMQ** okruženja se izvršavaju u **posebnim kontejnerima**.
