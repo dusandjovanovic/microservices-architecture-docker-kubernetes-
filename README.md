@@ -82,3 +82,16 @@ Servisi su pretplaćeni na `Service bus` magistralu i reaktivni da događaje koj
     Startup.cs
     ...
 ```
+
+`Microservices.Common` je projekat deljenih funkcionalnosti-klasa koje koriste ostali servisi. Primeri su ostvarivanje parametrizovane konekcije sa **MongoDB bazama podataka**, povezivanje na **RabbitMQ** sistem za razmenu poruka ili pak oblikovanje svih **događaja i komandi** koje se koriste u sistemu.
+
+Nad **RabbitMQ** messaging sistemom se bazira komunikacija između servisa. Sastoji se u objavljivanju **događaja** od strane jednog servisa i konzumiranja događaja od strane drugog pretplaćenog servisa u vidu izvršavanja **komande**.
+
+Direktorijum `Microservices.Common/Events` opisuje događaje:
+* `IEvent`, `IRejectedEvent` i `IAuthenticatedEvent` interfejsi
+* `ActivityCreated`, `UserAuthenticated` i `UserCreted` su primeri događaja koji nastaju
+
+Direktorijum `Microservices.Common/Commands` opisuje komande:
+* `ICommand`, `IAuthenticatedCmmand` interfejsi
+* `CreateActivity`, `AuthenticateUser` i `CreateUser` su primeri komandi kao posledice događaja
+
