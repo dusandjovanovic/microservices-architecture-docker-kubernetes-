@@ -292,3 +292,13 @@ public async Task HandleAsync(CreateActivity command)
     }
 }
 ```
+
+### Korisnički interfejs
+
+Kako je fokus projekta na mikroservisima i komunikaciji, korisnički interfejs je šablonski je koristi se `SwaggerUI` ekstenzija. Dva servisa koja poseduju endpoint-e imaju i `/swagger` rute koje mogu da se koriste za testiranje.
+
+Na slici se može videti interfejs gateway servisa.
+
+![alt text][api_ui]
+
+[api_ui]: meta/api_ui.png
