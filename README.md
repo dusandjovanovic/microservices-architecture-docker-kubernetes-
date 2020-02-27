@@ -338,3 +338,10 @@ Kako servisi zavise od **MongoDB** i **RabbitMQ** okruženja neophodno je pokren
 
 ### Testiranje endpoint-a
 
+#### Registrovanje korisnika
+
+```sh
+curl --location --request POST 'http://localhost:5000/api/users?=' \
+--header 'Content-Type: application/json' \
+--data-raw '{email: "dusanjo@stud.ntnu.no", password: "secret"}'
+```
