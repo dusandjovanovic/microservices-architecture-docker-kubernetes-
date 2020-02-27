@@ -247,21 +247,6 @@ namespace Microservices.Services.Identity.Controllers
 
 Ovaj servis ne poseduje API već je samo reaktivan na komande koje emituje gateway servis. Komanda koju osluškuje je `CreateActivity` i tada dolazi do modifikacije lokalne baze podataka i dodavanja prosleđenih podataka u vidu još jedne aktivnosti. 
 
-```c#
- public void ConfigureServices(IServiceCollection services)
-{
-    services.AddMvc();
-    services.AddLogging();
-    services.AddMongoDB(Configuration);
-    services.AddRabbitMq(Configuration);
-    services.AddScoped<ICommandHandler<CreateActivity>, CreateActivityHandler>();
-    services.AddScoped<IActivityRepository, ActivityRepository>();
-    services.AddScoped<ICategoryRepository, CategoryRepository>();
-    services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
-    services.AddScoped<IActivityService, ActivityService>();
-}
-```
-
 Odgovor na komandu se sastoji od **dodavanja `recorda` u bazu lokalnu podataka** i **emitovanje događaja `ActivityCreated`** na koji je reaktivan gateway servis.
 
 ```c#
@@ -297,17 +282,11 @@ public async Task HandleAsync(CreateActivity command)
 
 Kako je fokus projekta na mikroservisima i komunikaciji, korisnički interfejs je šablonski je koristi se `SwaggerUI` ekstenzija. Dva servisa koja poseduju endpoint-e imaju i `/swagger` rute koje mogu da se koriste za testiranje.
 
-Na slici se može videti interfejs gateway servisa.
+Na slici se može videti interfejs gateway servisa. Sličan interfejs poseduje i identity servis.
 
 ![alt text][api_ui]
 
 [api_ui]: meta/api_ui.png
-
-Drugi servis koji poseduje interfejs je takođe prikazan na sledećoj slici.
-
-![alt text][api_identity]
-
-[api_identity]: meta/api_identity.png
 
 ## Lokalno testiranje servisa
 
