@@ -14,3 +14,5 @@ C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernet
 C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Identity\obj\Debug\netcoreapp2.0\Microservices.Services.Identity.csproj.CopyComplete
 C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Identity\obj\Debug\netcoreapp2.0\Microservices.Services.Identity.dll
 C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Identity\obj\Debug\netcoreapp2.0\Microservices.Services.Identity.pdb
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Identity\bin\Debug\netcoreapp2.0\appsettings.docker.Development.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Identity\bin\Debug\netcoreapp2.0\appsettings.docker.json
