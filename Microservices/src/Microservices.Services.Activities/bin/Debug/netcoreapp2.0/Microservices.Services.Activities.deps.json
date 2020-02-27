@@ -27,6 +27,7 @@
           "Microservices.Common": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.9.10",
           "RawRabbit": "2.0.0-beta8",
           "RawRabbit.DependencyInjection.ServiceCollection": "2.0.0-beta8",
           "RawRabbit.Operations.Publish": "2.0.0-beta8",
@@ -2743,6 +2744,7 @@
           "lib/netstandard1.4/Microsoft.Rest.ClientRuntime.Azure.dll": {}
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.9.10": {},
       "Microsoft.VisualStudio.Web.BrowserLink/2.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0",
@@ -5605,6 +5607,13 @@
       "sha512": "sha512-6u8JIuvrztse4tPOcvNzAJuzGBP0uY+Ijggk8ZYhp0siGEZ1XfZylf1vpNGUicvwcrhhoIgDW73Z1L6QGssr2g==",
       "path": "microsoft.rest.clientruntime.azure/3.3.7",
       "hashPath": "microsoft.rest.clientruntime.azure.3.3.7.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.9.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-d5/5CDc4TAjrgO9oyyj+FHUDVumxgrlCMJqDtUX4GyTnr1Q/BP88PhnVunRZ9AQcL2UQkM4EkRNyFelPXunHtw==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.9.10",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.9.10.nupkg.sha512"
     },
     "Microsoft.VisualStudio.Web.BrowserLink/2.0.0": {
       "type": "package",

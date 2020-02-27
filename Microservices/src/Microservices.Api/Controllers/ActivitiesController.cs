@@ -13,7 +13,7 @@ using RawRabbit;
 namespace Microservices.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Activities")]
+    [Route("api/activities")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ActivitiesController : Controller
     {

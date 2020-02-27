@@ -14,3 +14,5 @@ C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernet
 C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Services.Activities.runtimeconfig.dev.json
 C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\Microservices.Services.Activities.pdb
 C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\obj\Debug\netcoreapp2.0\Microservices.Services.Activities.csproj.CopyComplete
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\appsettings.docker.Development.json
+C:\Users\Dusan\Documents\Repositories\microservices-architecture-docker-kubernetes\Microservices\src\Microservices.Services.Activities\bin\Debug\netcoreapp2.0\appsettings.docker.json

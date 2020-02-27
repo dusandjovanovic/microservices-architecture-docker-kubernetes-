@@ -10,7 +10,7 @@ using RawRabbit;
 namespace Microservices.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Users")]
+    [Route("api/users")]
     public class UsersController : Controller
     {
         private readonly IBusClient _busClient;
