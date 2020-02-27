@@ -103,7 +103,24 @@ Direktorijum `Microservices.Common/Events` opisuje događaje:
 
 Gateway servis poseduje tri kontrolera.
 
-##### `~/`
+##### `root/`
+
+```c#
+namespace Microservices.Api.Controllers
+{
+    [Produces("application/json")]
+    [Route("")]
+    public class HomeController : Controller
+    {
+        [HttpGet("")]
+        public IActionResult Get() => Content("Hello from API!");
+    }
+}
+```
+
+#### `root/api/users`
+
+`UsersController` poseduje endpoint za registrovanje novih korisnika koji će generisati odgovarajuću komandu za dodavanje korisnika. Na ovu komandu je **reaktivan servis `Microservices.Services.Identity`** koji će sačuvati potrebne informacije u bazi podataka i odgovoriti događajem o uspešnosti akcije.
 
 ```c#
 namespace Microservices.Api.Controllers
@@ -128,4 +145,64 @@ namespace Microservices.Api.Controllers
         }
     }
 }
+```
+
+### `root/api/activities`
+
+`ActivitiesController` poseduje više endpoint-a za pribavljanje svih dodatih aktivnosti, pribavljanje konkretne aktivnosti i dodavanje novih aktivnosti. "Flattened" kopije aktivnosti se nalaze u isto vreme u bazi podataka `Microservices.Api` servisa. Takođe, prilikom dodavanja novih aktivnosti su dodate u bazi servisa `Microservices.Services.Activities`.
+
+Prilikom `GET` zahteva se tako zbog jednostavnosti koriste kopije podataka gateway servisa, ali prilikom dodavanja novih aktivnosti treba generisati komandu koju će konzumirati servis `Microservices.Services.Activities` i reagovati dodavanjem podataka u lokalnu bazu. Nakon uspešnog dodavanja se emituje događaj na koji je reaktivan gateway servis i iste "flattened" podatke smešta u svoju bazu podataka u vidu odgovora na događaj.
+
+```c#
+[Produces("application/json")]
+    [Route("api/activities")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public class ActivitiesController : Controller
+    {
+        private readonly IBusClient _busClient;
+        private readonly IActivityRepository _repository;
+
+        public ActivitiesController(IBusClient busClient,
+            IActivityRepository repository)
+        {
+            _busClient = busClient;
+            _repository = repository;
+        }
+
+        [HttpGet("")]
+        public async Task<IActionResult> Get()
+        {
+            var activities = await _repository
+                .BrowseAsync(Guid.Parse(User.Identity.Name));
+
+            return Json(activities.Select(x => new { x.Id, x.Name, x.Category, x.CreatedAt }));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var activity = await _repository.GetAsync(id);
+            if (activity == null)
+            {
+                return NotFound();
+            }
+            if (activity.UserId != Guid.Parse(User.Identity.Name))
+            {
+                return Unauthorized();
+            }
+
+            return Json(activity);
+        }
+
+        [HttpPost("")]
+        public async Task<IActionResult> Post([FromBody]CreateActivity command)
+        {
+            command.Id = Guid.NewGuid();
+            command.UserId = Guid.Parse(User.Identity.Name);
+            command.CreatedAt = DateTime.UtcNow;
+            await _busClient.PublishAsync(command);
+
+            return Accepted($"activities/{command.Id}");
+        }
+    }
 ```
