@@ -474,3 +474,65 @@ Zatim, neophodno je uraditi:
 * `$ docker tag microservices.api dusandjovanovic/microservices.api $ docker push dusandjovanovic/microservices.api` za postavljanje image datoteke na Hub
 
 Ovo je postupak za svaki od servisa. Takođe **MongoDB** i **RabbitMQ** okruženja se izvršavaju u **posebnim kontejnerima**.
+
+### Docker Compose
+
+Kako bi se izvršila kompozicija svih servisa i potrebnih okruženja koristi se **Compose** mogućnost docker-a. U direktorijumu `Microservices/deploy` nalazi se opisna `docker-compose.yaml` datoteka.
+
+Iz priloženog izvornog koda se može videti da postoji poseban servis za svaku instancu tri različita mikroservisa. Takođe, okruženje baze podtaka i broker su odvojeni kontejneri. Prilikom build-ovanja kontejnera mikroservisa se koriste lokalni `Dockerfile-ovi`. Pomoćni servis koji se koristi je `dadarek/wait-for-dependencies` kojim se nalaže čekanje na pokretanje kontejnera `rabbitmq` i `mongodb`.
+
+Takođe, navedeni su i portovi svakog kontjnera koji se izvršava.
+* `5000` - Microservices.Api
+* `5050` - Microservices.Services.Activities
+* `5051` - Microservices.Services.Identity
+* `5672` - RabbitMQ
+* `27017` - MongoDB
+
+```yaml
+version: "3"
+
+services:
+  start-dependencies:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - mongo
+      - rabbitmq
+    command: rabbitmq:5672
+
+  api:
+    build: ../src/Microservices.Api
+    links:
+      - rabbitmq
+      - mongo
+    ports:
+      - '5000:5000'
+
+  activities-service:
+    build: ../src/Microservices.Services.Activities
+    links:
+      - rabbitmq
+      - mongo
+    ports:
+      - '5050:5050'
+
+  identity-service:
+    build: ../src/Microservices.Services.Identity
+    links:
+      - rabbitmq
+      - mongo
+    ports:
+      - '5051:5051'
+
+  mongo:
+    image: mongo
+    volumes:
+      - ./data/db:/data/db
+    ports:
+      - '27017:27017'
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+```
