@@ -675,11 +675,11 @@ Pokretanje uz orkestraciju na clusteru se sastoji od više koraka, neophodno je 
 [kubernetes_dashboard]: meta/kubernetes_dashboard.png
 
 
-### Custom konfig
+### Custom konfiguracija
 
-Konfiguracija koja je prethodno objašnjena je generisana, pored ove je napisana i ručna konfiguracija za svaki od kontejnera. `.yaml` datoteke se mogu naći u [/Microservices/deploy/kuberenetes-custom](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy/kuberenetes-custom). Za svaki od mikroservisa postoji posebna datoteka.
+Konfiguracija koja je prethodno objašnjena je generisana, pored ove je napisana ručno konfiguracija za svaki od kontejnera koji će se nezavisno orkestrirati. `.yaml` datoteke se mogu naći u [/Microservices/deploy/kuberenetes-custom](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy/kuberenetes-custom). Za svaki od mikroservisa postoji posebna datoteka deployment datoteka.
 
-Na primer, za gateway servis:
+Na primer, za gateway servis se kod može videti u nastavku.
 
 ```yaml
 apiVersion: apps/v1
