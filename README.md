@@ -338,7 +338,7 @@ Kako servisi zavise od **MongoDB** i **RabbitMQ** okruženja neophodno je pokren
 
 ### Testiranje API endpointa
 
-#### Registrovanje
+#### `POST http://gateway_api/api/users` za registrovanje
 
 ```sh
 curl --location --request POST 'http://localhost:5000/api/users?=' \
@@ -350,7 +350,7 @@ curl --location --request POST 'http://localhost:5000/api/users?=' \
 }'
 ```
 
-#### Prijavljivanje
+#### `POST http://identity_api/login` za prijavljivanje
 
 ```sh
 curl --location --request POST 'http://localhost:5050/login' \
@@ -370,7 +370,7 @@ Odgovor koji sadrži token koji zatim treba koristiti u ostalim zahtevima:
 }
 ```
 
-#### Dodavanje aktivnosti
+#### `POST http://gateway_api/api/activities` za dodavanje aktivnosti
 
 ```sh
 curl --location --request POST 'http://localhost:5000/api/activities' \
@@ -383,7 +383,7 @@ curl --location --request POST 'http://localhost:5000/api/activities' \
 }'
 ```
 
-#### Pribavljanje svih aktivnosti
+#### `GET http://gateway_api/api/activities` za pribavljanje svih aktivnosti
 
 ```sh
 curl --location --request GET 'http://localhost:5000/api/activities' \
@@ -410,7 +410,7 @@ Odgovor:
 ]
 ```
 
-#### Pribavljanje aktivnosti po ID-u
+#### `GET http://gateway_api/api/activities/{Id}` za pribavljanje jedne aktivnosti
 
 ```sh
 curl --location --request GET 'http://localhost:5000/api/activities/ba4feb21-be1d-4f6f-8a26-1a161ff9a26e' \
