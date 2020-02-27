@@ -570,7 +570,7 @@ Prema tome, image-i se mogu preuzeti sa hub-a komandom poput `$ docker pull dusa
 
 ## Kubernetes
 
-Kako je već formirana datoteka `docker-compose.yaml`, ista se može iskoristiti za deployment na *Kubernetes cluster*. Na osnovu ove datoteka formirane su ostale deployment konfiguracije koje se mogu naći u direktorijumu [/Microservices/deploy](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy).
+Kako je već formirana datoteka `docker-compose.yaml`, ista se može iskoristiti za deployment na *Kubernetes cluster* koji se sastoji od jednog master-čvora i više worker-čvorova. Na osnovu ove datoteka formirane su ostale deployment konfiguracije koje se mogu naći u direktorijumu [/Microservices/deploy](https://github.com/dusandjovanovic/microservices-architecture-docker-kubernetes/tree/master/Microservices/deploy).
 
 Na primeru gateway mikroservisa:
 
