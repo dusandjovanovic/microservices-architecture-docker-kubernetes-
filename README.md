@@ -642,6 +642,8 @@ Pokretanje uz orkestraciju na clusteru se sastoji od više koraka, neophodno je 
 
 `$ minikube dashboard`
 
+`$ cd Microservices/deploy && kompose up`
+
 ![alt text][kubernetes_dashboard.png]
 
 [kubernetes_dashboard.png]: meta/kubernetes_dashboard.png
