@@ -302,3 +302,9 @@ Na slici se može videti interfejs gateway servisa.
 ![alt text][api_ui]
 
 [api_ui]: meta/api_ui.png
+
+Drugi servis koji poseduje interfejs je takođe prikazan na sledećoj slici.
+
+![alt text][api_identity]
+
+[api_identity]: meta/api_identity.png
